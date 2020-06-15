@@ -5,6 +5,7 @@ class ImdbDBConnManager:
 
     def __init__(self, db='imdb', user='postgres', password='postgres', host='localhost', port=5432):
         self.connection = connect(dbname=db, user=user, password=password, host=host, port=port)
+        self.connection.set_session(readonly=True, autocommit=True)
         self.cur = self.connection.cursor()
 
     def execute_query(self, query_string):
@@ -19,5 +20,5 @@ class ImdbDBConnManager:
 
 if __name__ == '__main__':
     x = ImdbDBConnManager()
-    x.execute_query('SELECT * FROM moviedata')
+    x.execute_query('SELECT * FROM movies')
     print(x.return_data())
