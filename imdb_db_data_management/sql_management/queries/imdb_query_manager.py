@@ -12,7 +12,7 @@ class ImdbQueryManager:
 
 
     def search_film_by_name(self, string_in_title):
-        self.db_conn.execute_query("SELECT * FROM movies WHERE LOWER(movie_title) LIKE LOWER('%" + string_in_title + "%');")
+        self.db_conn.execute_query("SELECT * FROM movies WHERE LOWER(title) LIKE LOWER('%" + string_in_title + "%');")
         return self.db_conn.return_data()
 
 if __name__ == '__main__':
